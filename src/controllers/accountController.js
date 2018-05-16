@@ -3,13 +3,14 @@ const fs=require("fs")
 const captchapng=require("captchapng")
 
 exports.getLoginPage=(req,res)=>{
-    fs.readFile(path.join(__dirname,"../statics/views/login.html"),(err,data)=>{
-        if(err){
-            console.log(err)
-        }else{
-            res.end(data)
-        }
-    })
+    // fs.readFile(path.join(__dirname,"../statics/views/login.html"),(err,data)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         res.end(data)
+    //     }
+    // })
+    res.sendFile(path.join(__dirname,"../statics/views/login.html"))
 }
 exports.getVscode=(req,res)=>{
     var p = new captchapng(80,30,parseInt(Math.random()*9000+1000)); // width,height,numeric captcha
@@ -22,4 +23,7 @@ exports.getVscode=(req,res)=>{
             'Content-Type': 'image/png'
         });
         res.end(imgbase64);
+}
+exports.getRegisterPage=(req,res)=>{
+    res.sendFile(path.join(__dirname,"../statics/views/register.html"))
 }
